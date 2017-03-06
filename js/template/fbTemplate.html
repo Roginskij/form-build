@@ -1,0 +1,30 @@
+<form action="" name="">
+   
+    <div class="form-group" ng-repeat="item in data.components" >
+       
+        <label ng-if="item.type == 'text' && item.label" >{{ item.label }}</label>
+        <input ng-if="item.type == 'text'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
+        
+        <label ng-if="item.type == 'textarea' && item.label" >{{ item.label }}</label>
+        <textarea ng-if="item.type == 'textarea' " class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}"></textarea>
+        
+        <label ng-if="item.type == 'email' && item.label" >{{ item.label }}</label>
+        <input ng-if="item.type == 'email'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
+        
+        <label ng-if="item.type == 'password' && item.label" >{{ item.label }}</label>
+        <input ng-if="item.type == 'password'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
+        
+        <label ng-if="item.type == 'select' && item.label" >{{ item.label }}</label>
+        <select class="form-control" ng-if="item.type == 'select'" ng-required="item.required">
+            <option ng-repeat="x in item.options" value="{{ x.value }}">{{ x.value }}</option>
+        </select>
+        
+<!--
+        <label ng-if="item.type == 'date' && item.label" >{{ item.label }}</label>
+        <input ng-if="item.type == 'date'"  type="date" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
+-->
+        
+    </div>
+    
+    <button ng-if="data.components.length > 0" type="submit" class="btn btn-default">Submit</button>
+</form>

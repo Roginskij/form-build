@@ -1,0 +1,235 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">Add a new form</h3> </div>
+    <div class="panel-body">
+        <p>Select from that you want</p>
+        <select class="form-control" ng-model="selectTypeForm">
+            <option ng-repeat="item in selectForm" value="{{ item.value }}">{{ item.optionName }}</option>
+        </select>
+    </div>
+</div>
+<div ng-show="selectTypeForm == 'simpleForm' " class="container">
+<!--<div ng-show="true" class="container">-->
+    <div class="row">
+        <div class="col-xs-5">
+            <fb-create json="json" ></fb-create>    
+        </div>
+        <div class="col-xs-7">
+            <div class="list-group">
+                <a class="list-group-item active">Check component</a> 
+                
+                <a ng-click="isTextInput = !isTextInput" class="list-group-item">Text input</a>
+                <div ng-show="isTextInput" class="panel panel-default">
+                    <div class="panel-body">
+                        <label for="input" class="col-sm-3 control-label">{{ textInput.label }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input" placeholder="{{ textInput.placeholder }}" ng-required="textInput.required"> 
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Placeholder</label>
+                            <input type="text" ng-model="textInput.placeholder" class="form-control" placeholder="Placeholder for input">
+                        </div>
+                        <div class="form-group">
+                            <label for="textType">Label</label>
+                            <input type="text" ng-model="textInput.label" class="form-control" placeholder="Label for input">
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="textType" ng-model="textInput.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="textType" ng-model="textInput.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(textInput)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(textInput)">Clear component</button>
+                        </div>
+                    </div>
+                </div> 
+                
+                <a ng-click="isTextarea = !isTextarea" class="list-group-item">Texterea</a>
+                <div ng-show="isTextarea" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-3 control-label">{{ textareaType.label }}</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" ng-required="textareaType.required" placeholder="{{ textareaType.placeholder }}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Placeholder</label>
+                            <input type="text" ng-model="textareaType.placeholder" class="form-control" placeholder="Placeholder for textarea"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" ng-model="textareaType.label" class="form-control" placeholder="Label for textarea"> 
+                        </div>
+                        <div class="radio">
+                             <label><input type="radio" name="textareaType" ng-model="textareaType.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="textareaType" ng-model="textareaType.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(textareaType)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(textareaType)">Clear component</button>
+                        </div>
+                    </div>
+                </div>  
+                
+                <a ng-click="isEmail = !isEmail" class="list-group-item">Email</a>
+                <div ng-show="isEmail" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-3 control-label">{{ emailInput.label }}</label>
+                            <div class="col-sm-9">
+                                <input type="{{ emailInput.type }}" class="form-control" placeholder="{{ emailInput.placeholder }}" ng-required="emailInput.required"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Placeholder</label>
+                            <input type="text" ng-model="emailInput.placeholder" class="form-control" placeholder="Placeholder for email"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" ng-model="emailInput.label" class="form-control" placeholder="Label for email"> 
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="emailType" ng-model="emailInput.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="emailType" ng-model="emailInput.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(emailInput)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(emailInput)">Clear component</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <a ng-click="isPasswordInput = !isPasswordInput" class="list-group-item">Password</a> 
+                <div ng-show="isPasswordInput" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-3 control-label">{{ passwordInput.label }}</label>
+                            <div class="col-sm-9">
+                                <input type="{{ passwordInput.type }}" class="form-control" placeholder="{{ passwordInput.placeholder }}" ng-required="passwordInput.required"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Placeholder</label>
+                            <input type="text" ng-model="passwordInput.placeholder" class="form-control" placeholder="Placeholder for textarea"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" ng-model="passwordInput.label" class="form-control" placeholder="Label for textarea"> 
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="passwordType" ng-model="passwordInput.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="passwordType" ng-model="passwordInput.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(passwordInput)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(passwordInput)">Clear component</button>
+                        </div>
+                    </div>
+                </div>
+                      
+                <a ng-click="isSelectType = !isSelectType" class="list-group-item">Dropdown list</a> 
+                <div ng-show="isSelectType" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-3 control-label">{{ selectType.label }}</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-required="selectType.required">
+                                    <option ng-repeat="item in selectType.options" ng-value="item.value">{{ item.value }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" ng-model="selectType.label" class="form-control" placeholder="Label for textarea"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Options for dropdown list</label>
+                            <div class="list-group">
+                                <div class="list-group-item" ng-repeat="item in selectType.options">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <input type="text" ng-model="item.value" class="form-control" placeholder="Placeholder for textarea"> 
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-danger" ng-click="selectType.options.splice($index, 1)">Delete option</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="selectType.options.push({value: ''})">Add option</button>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="selectType" ng-model="selectType.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="selectType" ng-model="selectType.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(selectType)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(selectType)">Clear component</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <a ng-click="isDateInput = !isDateInput" class="list-group-item">Date input HTML5</a> 
+                <div ng-show="isDateInput" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="input" class="col-sm-3 control-label">{{ dateType.label }}</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" ng-required="dateType.required" ng-model="dateType.date"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input type="text" ng-model="dateType.label" class="form-control" id="textInput" placeholder="Label for textarea"> 
+                        </div>
+                        <div class="form-group">
+                            <label>Value of date</label>
+                            <input type="date" ng-model="dateType.date" class="form-control"> 
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="dateType" ng-model="dateType.required" ng-value="false"> Not required input </label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="dateType" ng-model="dateType.required" ng-value="true"> Required input </label>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success" ng-click="addComponent(dateType)">Add component</button>
+                            <button type="button" class="btn btn-danger" ng-click="clearComponent(dateType)">Clear component</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="selectTypeForm == 'pagesForm' " class="container">
+    <div class="row">
+        <div class="col-xs-6">test2</div>
+        <div class="col-xs-6">test2</div>
+    </div>
+</div>

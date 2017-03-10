@@ -12,7 +12,7 @@
 <!--<div ng-show="true" class="container">-->
     <div class="row">
         <div class="col-xs-5">
-            <div class="form-group" ng-repeat="item in dataJson.components" >
+            <div class="form-group" ng-repeat="item in dataJson.components track by $index" >
        
                 <label ng-if="item.type == 'text' && item.label" >{{ item.label }}</label>
                 <input ng-if="item.type == 'text'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">

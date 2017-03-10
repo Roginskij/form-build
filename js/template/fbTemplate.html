@@ -1,6 +1,6 @@
 <form action="" name="">
    
-    <div ng-if="data.components" class="form-group" ng-repeat="item in data.components" >
+    <div ng-if="data.components" class="form-group" ng-repeat="item in data.components track by $index" >
        
         <label ng-if="item.type == 'text' && item.label" >{{ item.label }}</label>
         <input ng-if="item.type == 'text'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
@@ -16,10 +16,9 @@
         
         <label ng-if="item.type == 'select' && item.label" >{{ item.label }}</label>
         <select class="form-control" ng-if="item.type == 'select'" ng-required="item.required">
-            <option ng-repeat="x in item.options" value="{{ x.value }}">{{ x.value }}</option>
+            <option ng-repeat="x in item.options track by $index" value="{{ x.value }}">{{ x.value }}</option>
         </select>
         
-        <button type="button" class="btn btn-danger" ng-click="removeComponent($index)">Remove component</button>
     </div>
     
     <div ng-if="data.pages">
@@ -32,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a ng-repeat="page in data.pages" ng-click="setPage($index)">{{ $index + 1 }}</a>
+                    <a ng-repeat="page in data.pages track by $index" ng-click="setPage($index)">{{ $index + 1 }}</a>
                 </li>
                 <li>
                     <a href="#" aria-label="Next" ng-click="nextPage()">
@@ -42,7 +41,7 @@
             </ul>
         </nav>
         
-        <div class="form-group" ng-repeat="item in data.pages[showPage].components" >
+        <div class="form-group" ng-repeat="item in data.pages[showPage].components track by $index" >
            
             <label ng-if="item.type == 'text' && item.label" >{{ item.label }}</label>
             <input ng-if="item.type == 'text'" type="{{ item.type }}" class="form-control" ng-required="item.required" placeholder="{{ item.placeholder }}">
@@ -58,10 +57,8 @@
 
             <label ng-if="item.type == 'select' && item.label" >{{ item.label }}</label>
             <select class="form-control" ng-if="item.type == 'select'" ng-required="item.required">
-                <option ng-repeat="x in item.options" value="{{ x.value }}">{{ x.value }}</option>
+                <option ng-repeat="x in item.options track by $index" value="{{ x.value }}">{{ x.value }}</option>
             </select>
-
-            <button type="button" class="btn btn-danger" ng-click="removeComponent($index)">Remove component</button>
         </div>
         
     </div>

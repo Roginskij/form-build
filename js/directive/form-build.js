@@ -4,7 +4,6 @@ app.directive('formBuild', ['$rootScope', function($rootScope){
         scope: {},
         templateUrl: './js/template/form-build.html',
         link: formBuild,
-        controller: 'fbCtrl'
     };
     
     function formBuild(scope){
@@ -21,30 +20,27 @@ app.directive('formBuild', ['$rootScope', function($rootScope){
             },
         ];
         scope.selectTypeForm = scope.selectForm[0].value;
-        $rootScope.form = JSON.stringify({
+        $rootScope.form = {
             formName: 'testForm',
             components: [],
-        });
+        };
         $rootScope.$watch('form', function(){
-            scope.dataJson = JSON.parse($rootScope.form);
-            scope.json = $rootScope.form;
+            scope.dataJson = $rootScope.form;
         })
         scope.changeTypeForm = function(){
             if(scope.selectTypeForm == 'simpleForm'){
-                $rootScope.form = JSON.stringify({
+                $rootScope.form = {
                     formName: 'testForm',
                     components: [],
-                });
-                scope.dataJson = JSON.parse($rootScope.form);
-                scope.json = $rootScope.simpleForm;
+                };
+                scope.dataJson = $rootScope.form;
             } 
             if( scope.selectTypeForm == 'pagesForm' ) {
-                $rootScope.form = JSON.stringify({
+                $rootScope.form = {
                     formName: 'testPagesForm',
                     pages: [{components: []}],
-                });
-                scope.dataJson = JSON.parse($rootScope.form);
-                scope.json = $rootScope.form;
+                };
+                scope.dataJson = $rootScope.form;
             }
         }
     /// ---
@@ -84,22 +80,23 @@ app.directive('formBuild', ['$rootScope', function($rootScope){
                 }
             ]
         },
-        scope.dateType = {
-            type: 'date',
-            required: false,
-            date: new Date(),
-            label: '',
-        }
+//        scope.dateType = {
+//            type: 'date',
+//            required: false,
+//            date: new Date(),
+//            label: '',
+//        }
     /// ---
         
     /// Monipulate with pages
         scope.showPage = 0;
         scope.addPage = function(){
             scope.dataJson.pages.push({components: []});
+            $rootScope.form = scope.dataJson;
         }
         scope.removePage = function(){
             scope.dataJson.pages.pop();
-            $rootScope.exempleJson2 = JSON.stringify(scope.dataJson);
+            $rootScope.form = scope.dataJson;
         }
         scope.setPage = function(index){
             scope.showPage = index;
@@ -116,25 +113,24 @@ app.directive('formBuild', ['$rootScope', function($rootScope){
         }
     /// ---
         
-        
-        
     /// Add & remove component to form
         scope.removeComponent = function(index){
             if(scope.selectTypeForm == 'pagesForm'){
                 scope.dataJson.pages[scope.showPage].components.splice(index, 1);
+                $rootScope.form = scope.dataJson;
             } else {
                 scope.dataJson.components.splice(index, 1);
+                $rootScope.form = scope.dataJson;
             }
         }
         scope.addComponent = function(object){
+            console.log(scope.dataJson)
             if(scope.selectTypeForm == 'pagesForm'){
-                
                 scope.dataJson.pages[scope.showPage].components.push(object);
-                
+                $rootScope.form = scope.dataJson;
             } else {
-                var data = JSON.parse($rootScope.form);
-                data.components.push(object);
-                $rootScope.form = JSON.stringify(data);
+                scope.dataJson.components.push(object);
+                $rootScope.form = scope.dataJson;
             }
         }
     /// ---
@@ -149,5 +145,4 @@ app.directive('formBuild', ['$rootScope', function($rootScope){
     /// ---
         
     };
-    
 }])
